@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+/* about_top背景、文字 */
+.about_container {
+    background: #fff;
+    position: relative;
+    top: -50px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0 20px;
+    color: #24140e;
+}
+
+/* 質問項目全体 */
+form{
+    max-width: 800px;
+    padding: 40px ;
+    margin: 30px ;
+}
+/* 質問の項目の間隔 */
+.contact-form dl{
+    margin: 0 auto 40px;
+}
+/* 質問の項目名 */
+.contact-form dt{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* "必須"、”未入力です” */
+.contact-form span{
+    font-size: 12px;
+    color: #fff;
+    background: #be491f;
+    padding: 5px 10px;
+    margin: 5px 15px;
+}
+
+.contact-form dd,input,textarea{
+    /* max-width: 400px; */
+    width: 100%;
+    background: rgba(255,255,255,.5);
+    border: 1px #fff solid;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+.contact-form input{
+    height: 50px;
+}
+.contact-form textarea{
+    height: 200px;
+}
+.error{
+    display: block;
+    font-weight: bold;
+    color: red;
+}
+
+/* 送信ボタン */
+.contact-submit input{
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff ;
+    background: #24140e;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+input[type="submit"]:hover {
+    opacity: 0.7;
+    transition:0.5s;
+} 

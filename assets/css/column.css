@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.about_container {
+    background: #fff;
+    position: relative;
+    top: -50px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0 20px;
+    color: #24140e;
+}
+
+/* column白背景 */
+.column_box {  
+    background: #fff;
+    color: #24140e;
+    margin: 20px 10px;
+    border-radius: 50px;
+}
+/* column見出し */
+.column_box dd {
+    margin: 20px 0;
+}
+/* column日付 */
+.column_box dd span {
+    display: block;
+    margin: 20px 0;
+}
+

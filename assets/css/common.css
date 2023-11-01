@@ -1,0 +1,424 @@
+@charset "UTF-8";
+
+/* ハンバーガーメニューでの
+カレント（現在位置）設定
+グローバルナビゲーション用 */
+#about nav .menu1 a,
+#products nav .menu2 a,
+#column nav .menu3 a,
+#instagram nav .menu4 a,
+#news nav .menu5 a,
+#cart nav .menu6 a,
+#contact nav .menu7 a {
+color: #8fbc8f;
+}
+/* スクロールバーのガタつき防止 */
+html{
+    overflow-y: scroll;
+}
+/* 全体の初期設定 */
+html, body {
+    color: #fff;
+    width: 100%;
+    backface-visibility: hidden;
+    background: #8fbc8f;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 600;
+    font-family: 'Noto Serif', serif;
+}
+/* メインコンテンツの横幅
+真ん中寄せ、左右余白 */
+.main_container {
+    width: min(92%,1166px);
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px 0;
+}
+/* リンクの初期設定 */  
+a {
+    color: #24140e;
+    text-decoration: none;
+}    /* left: 10px;
+/* リンクhoverで色薄く */
+a:hover {
+    opacity: 0.7;
+    transition:0.5s;
+}
+/* フレックス設定各種 */
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.flex_between_nowrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: none;
+}
+.flex_around {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.flex_start {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.flex_center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ぼかしから出現 */
+.blur{
+	animation-name:blurAnime;
+	animation-duration:2s;
+	animation-fill-mode:forwards;
+}
+@keyframes blurAnime{
+from {
+	filter: blur(10px);
+	transform: scale(1.0);
+}
+to {
+	filter: blur(0);
+	transform: scale(1);
+}
+}
+/* --------------------- */
+/* ----ここからheader---- */
+
+/* header背景固定 */
+.header {
+    min-height: 100px;
+    background: url(../img/common_header.png); 
+    position:sticky;
+    top:0;
+    z-index: 999;
+}
+/* headerハンバーガー、ロゴ、カート */
+.header_container {
+    max-width: 1166px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 23px 0 0;
+    /*ロゴをセンターに調整 */
+    height: 100%;
+}
+/* headerロゴ、カート位置 */
+.header img{
+    padding-top: 10px;
+}
+/* headerカートのみ位置調整 */
+.header p img:last-child{
+    padding-top: 17px;
+}
+/* ----ここまでheader---- */
+/* --------------------- */
+
+
+/* -------------------------- */
+/* ----ここからハンバーガー---- */
+#g-nav{
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    position:fixed;
+    z-index: 999;
+    /*ナビのスタート位置と形状*/
+    top:-120%;
+    left:0;
+    width:100%;
+    height: 70%;/*ナビの高さ*/
+    background: rgba(36,20,14,0.65);
+    transition: all 0.8s;/*動き*/
+}
+/*アクティブクラスがついたら位置を0に*/
+#g-nav.panelactive{
+    top: 0;
+}
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list{
+    /*ナビの数が増えた場合縦スクロール*/
+    position: fixed;
+    z-index: 999; 
+    width: 100%;
+    height: 100vh;/*表示する高さ*/
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+/*ナビゲーション*/
+#g-nav ul {
+    /*ナビゲーション天地中央揃え*/
+    position: absolute;
+    z-index: 999;
+    top:55%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+/*リストのレイアウト設定*/
+#g-nav li{
+    list-style: none;
+    text-align: center; 
+}
+#g-nav li a{
+    text-decoration: none;
+    color: #f5deb3;
+    font-size: 24px;
+    font-weight: lighter;
+    padding:8px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+#g-nav li a:hover{
+    text-decoration: underline;
+    
+}
+/* ----ハンバーガーボタン---- */
+.openbtn{
+    position: relative;
+    /* left: 10px; */
+    z-index: 9999;/*ボタンを最前面に*/
+    cursor: pointer;
+    width: 50px;
+    height:50px;
+    margin-top: 8px;
+}
+/*×に変化*/	
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #f5deb3;
+    width: 75%;
+}
+/* spanで3本の線 */
+.openbtn span:nth-of-type(1) {
+    top:15px;	
+}
+.openbtn span:nth-of-type(2) {
+    top:23px;
+}
+.openbtn span:nth-of-type(3) {
+    top:31px;
+}
+/* spanで×の線 */
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 60%;
+}
+.openbtn.active span:nth-of-type(2) {
+    opacity: 0;
+}
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 60%;
+}
+
+/* ----ここまでnav---- */
+/* ------------------ */
+
+/* ここからmain */
+
+/* TOP以外の、各ページ見出し */
+/*表示するテキストが切り替わる*/
+.btntextchange {
+position: relative;
+display: inline-block;
+margin: 20px 0 50px;
+font-size: 2rem;
+line-height: 5rem;
+color: #24140e;
+text-shadow: 3px 7px 4px #8fbc8faf ;
+}
+.btntextchange:hover{
+color:#24140e;
+font-size: 2rem;
+line-height: 5rem;
+}
+.btntextchange span{
+position: absolute;
+left: 50%;
+top:50%;
+transform:translate(-50%,-50%);
+transition: all 0.8s;
+display: block;
+white-space: nowrap;
+}
+.btntextchange span:nth-child(2){
+opacity:0;/*透過0に*/
+}
+.btntextchange:hover span:nth-child(1){
+opacity:0;/*透過0に*/
+}
+.btntextchange:hover span:nth-child(2){
+opacity:1;/*不透明に*/
+}
+
+
+
+
+/* もっと見るボタン */
+.btn_more a{
+    display: block;
+    margin: 50px auto 50px;
+    background-color: #f5deb3;
+    border-radius: 10px;
+    width: 300px;
+    padding: 8px 0;
+    font-weight: bold;
+}
+/* もっと見るボタンhoverで色薄く */
+.btn_more a:hover {
+    opacity: 0.7;
+    transition:0.5s;
+}
+
+/* ページ移動ボタン */
+.btn_next a{
+    display: block;
+    margin: 50px 20px;
+    background-color: #f5deb3;
+    border-radius: 10px;
+    width: 200px;
+    padding: 8px 0;
+    font-weight: bold;
+}
+/* ページ移動ボタンhoverで色薄く */
+.btn_next a:hover {
+    opacity: 0.7;
+    transition:0.5s;
+}
+.btn_before a {
+    display: block;
+    margin: 50px 20px;
+    background-color: #E8E8E8;
+    color: rgb(180, 171, 171);
+    border-radius: 10px;
+    width: 200px;
+    padding: 8px 0;
+    font-weight: bold;
+}
+/* ----ここまでmainのボタン---- */
+/* ------------------ */
+
+/* --------------------- */
+/* ----ここからfooter---- */
+
+/* footer背景 */
+.footer {
+    min-height: 310px;
+    background: url(../img/common_footer.png) ;
+    background-size: cover;
+    position: relative;
+}
+/* footer枠 */
+.footer_container {
+    max-width: 1166px;
+    margin: 0 auto;
+    color: #f5deb3;
+    padding: 70px 30px 20px ;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+/* footerインスタアイコン位置調整 */
+footer span {
+    margin-top: 10px;
+    margin-left:20px;
+}
+/* リンク色サイズ */
+footer ul li a {
+    color: #f5deb3;
+    font-size: 18px;
+}
+/* ナビゲーション全体枠 */
+.footer_nav {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+/* ナビゲーションサブ枠 */
+.footer_nav2 {
+    margin-left: 70px;
+}
+/* 社名 */
+small {
+    font-size: 14px;
+    line-height: 3;
+}
+/* カレント（現在位置）設定
+footer内ナビゲーション用 */
+#about footer .menu1 a,
+#products footer .menu2 a,
+#column footer .menu3 a,
+#instagram footer .menu4 a,
+#news footer .menu5 a,
+#cart footer .menu6 a,
+#contact footer .menu7 a,
+footer ul li a:hover {
+    text-decoration: underline;
+}
+/* ----ここまでfooter---- */
+/* ------------------ */
+
+
+@media screen and (max-width:800px) {
+    .footer_container {
+        padding: 90px 30px 20px ;
+    }
+}
+@media screen and (max-width:500px) {
+/* ページ移動ボタン */
+.btn_next a{
+    display: block;
+    margin: 50px 20px;
+    background-color: #f5deb3;
+    border-radius: 10px;
+    width: 90px;
+    padding: 8px 0;
+    font-weight: bold;
+    font-size: 14px;
+    }
+    /* ページ移動ボタンhoverで色薄く */
+    .btn_next a:hover {
+    opacity: 0.7;
+    transition:0.5s;
+    }
+    .btn_before a {
+    display: block;
+    margin: 50px 20px;
+    background-color: #E8E8E8;
+    color: rgb(180, 171, 171);
+    border-radius: 10px;
+    width: 90px;
+    padding: 8px 0;
+    font-weight: bold;
+    font-size: 14px;
+    }
+
+    /* サブナビサイズ */
+footer ul li a {
+    font-size: 13px;
+}
+/* ナビゲーションサブ枠 */
+.footer_nav2 {
+    margin-left: 50px;
+}
+/* 社名 */
+small {
+    font-size: 12px;
+    line-height: 3;
+}
+}
